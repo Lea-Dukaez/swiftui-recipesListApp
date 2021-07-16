@@ -11,7 +11,8 @@ struct RecipeDetailView: View {
     
     var recipe:Recipe
     
-    var body: some View {
+    var body: some View { 
+        
         ScrollView {
             
             VStack(alignment: .leading) {
@@ -26,13 +27,11 @@ struct RecipeDetailView: View {
                         .font(.headline)
                         .padding(.vertical)
                        
-                    
-                    ForEach (recipe.ingredients, id:\.self) { item in
-                        Text("• " + item)
+                    ForEach (recipe.ingredients) { item in
+                        Text("• " + item.name)
                             .padding(.bottom, 1)
                     }
-                }
-                .padding(.horizontal)
+                }.padding(.horizontal)
                 
                 Divider()
                 
@@ -42,19 +41,13 @@ struct RecipeDetailView: View {
                         .font(.headline)
                         .padding(.vertical)
                     
-                    
                     ForEach (0..<recipe.directions.count, id:\.self) { index in
                         
                         Text(String(index+1) + ".  " + recipe.directions[index])
                             .padding(.bottom, 1)
                     }
-                }
-                .padding(.horizontal)
-                
-                
+                }.padding(.horizontal)
             }
-
-            
             
         }
         .navigationBarTitle(recipe.name)
